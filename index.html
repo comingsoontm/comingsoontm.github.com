@@ -143,9 +143,9 @@
         const rt = window.innerWidth / window.innerHeight;
         if (ratio !== rt){
           ratio = rt;
+          renderer.setSize( window.innerWidth, window.innerHeight );
           camera.aspect = rt;
           camera.updateProjectionMatrix();
-          renderer.setSize( window.innerWidth, window.innerHeight );
         }
         requestAnimationFrame( animate );
         renderer.render( scene, camera );
