@@ -50,6 +50,13 @@
       } );
       const cube = new THREE.Mesh( geometry, material );
       scene.add( cube );
+      const geometryb = new THREE.BoxGeometry( 1, 1, 1 );
+      const cubeb = new THREE.Mesh( geometryb, material );
+      if (Math.random()>0.9)
+        scene.add( cubeb );
+      // cubeb.rotation.x=0.5
+      // cubeb.rotation.y=0.5
+      cubeb.rotation.z=0.75
 
       const geometry2 = new THREE.BoxGeometry( 1,1,2 );
       const cube2 = new THREE.Mesh( geometry2, material );
@@ -127,9 +134,17 @@
         const delta = now - last;
         last = now;
         const fps = 1/delta;
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-        cube.rotation.z += Math.random()/fps;
+        const deltas = [
+          0.01,
+          0.01,
+          Math.random()/fps,
+        ];
+        cube.rotation.x+=deltas[0]
+        cubeb.rotation.x+=deltas[0]
+        cube.rotation.y+=deltas[1]
+        cubeb.rotation.y+=deltas[1]
+        cube.rotation.z+=deltas[2]
+        cubeb.rotation.z+=deltas[2]
         cube2.position.x += c2dX*(Math.random()/fps);
         if (cube2.position.x > 10 || (cube2.position.x > 3 && Math.random() > rngT)) {
           c2dX=-1;
